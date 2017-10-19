@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    <title>Publish/Subscribe Pattern | horizon | Vestin&#39;s blog</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="design pattern">
+    <meta name="description" content="观察者模式 观察者模式 定义了对象之间的一对多依赖，这样一来，当一个对象改变状态时，它所有依赖者都会收到通知并自动更新。">
+<meta name="keywords" content="design pattern">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Publish&#x2F;Subscribe Pattern">
+<meta property="og:url" content="http://vestin.github.io/2016/04/18/design-pattern-Publish-Subscribe/index.html">
+<meta property="og:site_name" content="horizon">
+<meta property="og:description" content="观察者模式 观察者模式 定义了对象之间的一对多依赖，这样一来，当一个对象改变状态时，它所有依赖者都会收到通知并自动更新。">
+<meta property="og:locale" content="cn">
+<meta property="og:image" content="http://7xqgk3.com1.z0.glb.clouddn.com/image/design-pattern/subject-observer.jpg">
+<meta property="og:updated_time" content="2017-10-19T08:44:29.055Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Publish&#x2F;Subscribe Pattern">
+<meta name="twitter:description" content="观察者模式 观察者模式 定义了对象之间的一对多依赖，这样一来，当一个对象改变状态时，它所有依赖者都会收到通知并自动更新。">
+<meta name="twitter:image" content="http://7xqgk3.com1.z0.glb.clouddn.com/image/design-pattern/subject-observer.jpg">
+    
+        <link rel="alternate" type="application/atom+xml" title="horizon" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">Vestin</h5>
+          <a href="mailto:vestinzds@gmail.com" title="vestinzds@gmail.com" class="mail">vestinzds@gmail.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                Home
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                Archives
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                Categories
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/vestin" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/about"  >
+                <i class="icon icon-lg icon-heart"></i>
+                About Me
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">Publish/Subscribe Pattern</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">Publish/Subscribe Pattern</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2016-04-18T06:46:20.000Z" itemprop="datePublished" class="page-time">
+  2016-04-18
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/coding/">coding</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#观察者模式"><span class="post-toc-number">1.</span> <span class="post-toc-text">观察者模式</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#主题"><span class="post-toc-number">1.0.1.</span> <span class="post-toc-text">主题</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#观察者"><span class="post-toc-number">1.0.2.</span> <span class="post-toc-text">观察者</span></a></li></ol></li></ol></li></ol>
+        </nav>
+    </aside>
+    
+<article id="post-design-pattern-Publish-Subscribe"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">Publish/Subscribe Pattern</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2016-04-18 14:46:20" datetime="2016-04-18T06:46:20.000Z"  itemprop="datePublished">2016-04-18</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/coding/">coding</a></li></ul>
+
+
+
+            
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <h1 id="观察者模式"><a href="#观察者模式" class="headerlink" title="观察者模式"></a>观察者模式</h1><blockquote>
+<p><strong>观察者模式</strong> 定义了对象之间的一对多依赖，这样一来，当一个对象改变状态时，它所有依赖者都会收到通知并自动更新。<br><a id="more"></a><br><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://7xqgk3.com1.z0.glb.clouddn.com/image/design-pattern/subject-observer.jpg" alt="subject observer" title="">
+                </div>
+                <div class="image-caption">subject observer</div>
+            </figure><br>subject observer UMP map</p>
+</blockquote>
+<p>In php</p>
+<h3 id="主题"><a href="#主题" class="headerlink" title="主题"></a>主题</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div></pre></td><td class="code"><pre><div class="line">&lt;?php</div><div class="line"></div><div class="line">//被订阅的主题</div><div class="line">interface subject &#123;</div><div class="line"></div><div class="line">    //注册的观察者</div><div class="line">    private $observers = [];</div><div class="line"></div><div class="line">    /**</div><div class="line">     * Observer $observer</div><div class="line">     *</div><div class="line">     * return void</div><div class="line">     */</div><div class="line">    public function rigisterObserver(Observer $observer)&#123;</div><div class="line">        $this-&gt;observers[] = $observer;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    /**</div><div class="line">     * Observer $observer</div><div class="line">     *</div><div class="line">     * return void</div><div class="line">     */</div><div class="line">    public function removeObserver(Observer $observer)&#123;</div><div class="line">        unset($this-&gt;observers[array_search($observer)]);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    /**</div><div class="line">     * Notify all observer</div><div class="line">     *</div><div class="line">     * return void</div><div class="line">     */</div><div class="line">    public function notifyObservers()&#123;</div><div class="line">        foreach($this-&gt;observers as $observer)&#123;</div><div class="line">            $observer-&gt;update();</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="观察者"><a href="#观察者" class="headerlink" title="观察者"></a>观察者</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">&lt;?php</div><div class="line">//观察者</div><div class="line">interface Observer&#123;</div><div class="line"></div><div class="line">    /**</div><div class="line">     *  Do things when notify</div><div class="line">     */</div><div class="line">    abstract public function update();</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    <div class="content">
+        
+
+        
+        欢迎分享交流 XD<br>本文地址：<a href="/2016/04/18/design-pattern-Publish-Subscribe/" target="_blank" rel="external">http://vestin.github.io/2016/04/18/design-pattern-Publish-Subscribe/</a>
+        
+    </div>
+    <footer>
+        <a href="http://vestin.github.io">
+            <img src="/img/avatar.jpg" alt="Vestin">
+            Vestin
+        </a>
+    </footer>
+</blockquote>
+
+        
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/design-pattern/">design pattern</a></li></ul>
+
+
+            
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2016/04/18/design-pattern-decorator-pattern/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">decorator pattern</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2016/04/18/design-pattern-principle/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">design-pattern-principle</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>This blog is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.</span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>Vestin &copy; 2016 - 2017</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: false, REWARD: false };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = 'for freedom!!!';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '(つェ⊂)咦!又好了!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>

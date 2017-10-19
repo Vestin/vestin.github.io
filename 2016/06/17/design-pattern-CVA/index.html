@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    <title>design-pattern-commonality-and-variability-analysis | horizon | Vestin&#39;s blog</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="design pattern">
+    <meta name="description" content="commonality and variability analysis (CVA) 共性可变性分析共性可变性分析 设计模式不能用于所有的设计中，但他们提供的思想是相同的。这些思想中，最重要的一条就是可以使用CVA找到系统中的变化，然后按照设计模式的原则（对接口编程、使用对象聚集封装变化）获得灵活和易于测试的设计。">
+<meta name="keywords" content="design pattern">
+<meta property="og:type" content="article">
+<meta property="og:title" content="design-pattern-commonality-and-variability-analysis">
+<meta property="og:url" content="http://vestin.github.io/2016/06/17/design-pattern-CVA/index.html">
+<meta property="og:site_name" content="horizon">
+<meta property="og:description" content="commonality and variability analysis (CVA) 共性可变性分析共性可变性分析 设计模式不能用于所有的设计中，但他们提供的思想是相同的。这些思想中，最重要的一条就是可以使用CVA找到系统中的变化，然后按照设计模式的原则（对接口编程、使用对象聚集封装变化）获得灵活和易于测试的设计。">
+<meta property="og:locale" content="cn">
+<meta property="og:updated_time" content="2017-10-19T08:44:29.055Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="design-pattern-commonality-and-variability-analysis">
+<meta name="twitter:description" content="commonality and variability analysis (CVA) 共性可变性分析共性可变性分析 设计模式不能用于所有的设计中，但他们提供的思想是相同的。这些思想中，最重要的一条就是可以使用CVA找到系统中的变化，然后按照设计模式的原则（对接口编程、使用对象聚集封装变化）获得灵活和易于测试的设计。">
+    
+        <link rel="alternate" type="application/atom+xml" title="horizon" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">Vestin</h5>
+          <a href="mailto:vestinzds@gmail.com" title="vestinzds@gmail.com" class="mail">vestinzds@gmail.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                Home
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                Archives
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                Categories
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/vestin" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/about"  >
+                <i class="icon icon-lg icon-heart"></i>
+                About Me
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">design-pattern-commonality-and-variability-analysis</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">design-pattern-commonality-and-variability-analysis</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2016-06-17T01:48:53.000Z" itemprop="datePublished" class="page-time">
+  2016-06-17
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/coding/">coding</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#commonality-and-variability-analysis-CVA-共性可变性分析"><span class="post-toc-number">1.</span> <span class="post-toc-text">commonality and variability analysis (CVA) 共性可变性分析</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#参考"><span class="post-toc-number">1.0.1.</span> <span class="post-toc-text">参考</span></a></li></ol></li></ol></li></ol>
+        </nav>
+    </aside>
+    
+<article id="post-design-pattern-CVA"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">design-pattern-commonality-and-variability-analysis</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2016-06-17 09:48:53" datetime="2016-06-17T01:48:53.000Z"  itemprop="datePublished">2016-06-17</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/coding/">coding</a></li></ul>
+
+
+
+            
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <h1 id="commonality-and-variability-analysis-CVA-共性可变性分析"><a href="#commonality-and-variability-analysis-CVA-共性可变性分析" class="headerlink" title="commonality and variability analysis (CVA) 共性可变性分析"></a>commonality and variability analysis (CVA) 共性可变性分析</h1><p>共性可变性分析</p>
+<p>设计模式不能用于所有的设计中，但他们提供的思想是相同的。这些思想中，最重要的一条就是可以使用CVA找到系统中的变化，然后按照设计模式的原则（对接口编程、使用对象聚集封装变化）获得灵活和易于测试的设计。<br><a id="more"></a></p>
+<p>造成紧耦合程序设计的原因就是**</p>
+<p>开发人员经常在弄清楚实体本身之前就考虑实体之间的关系**，过早得注意实现细节。</p>
+<blockquote>
+<p>首先，使用CVA找到问题领域中存在的各种概念（共性）和具体的实现（可变性）。这时我们最感兴趣的是找到其中的概念，但是这一过程中也会发现许多可变性。问题域中任何没有包含在这些概念中的实体（比如可能有一些属于“某种”对象的对象）也应该找出来。然后，在所需功能的概念全部找到之后，继续为封装这些概念的抽象定制接口。接着考虑你将如何使用从该抽象派生的具体实现，根据这一点派生接口。</p>
+</blockquote>
+<p><strong>CVA方法和设计模式的区别是： </strong><br>CVA强调尽早关注抽象，这样更可能找到最有用的抽象。设计模式关注这些抽象之间的关系，但是对于找出最重要的抽象帮助不大。设计模式可以使我们利用来自过去成功设计的真知灼见，而CVA做不到这一点。</p>
+<p>分析得到共性和可变性之后，就自然可以形成若干独立的模型（继承结构）。下步任务是确定概念之间的关系。这个过程中，设计模式会对确定概念间关系有指导作用，但不是决定作用。概念间的关系还是要有问题本身来决定，这样才能得到符合真实世界情况的关系模型，在此基础上，设计模式会帮助优化该模式。</p>
+<p>要指出的是，CVA和经典的“名词动词分析法”并不相悖。名词动词分析法中，程序员提取需求描述中的名词和动词，由此来确定系统中的对象及其行为。CVA方法在此基础上更进了一步，在得到具体事物之后要求提取出事物间的共性，也就是概念，以此作为抽象接口的设计蓝图。如果在初始阶段就作如此分析，那么设计过程基本上就满足了“依赖倒置”原则。最终得到的设计也会具有一定的灵活性（但并不能保证这一点，毕竟左右设计结果的因素很多）。</p>
+<h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><p><a href="http://www.tuicool.com/articles/mqYF3m" target="_blank" rel="external">设计模式解析笔记 - 共性和可变性分析</a></p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    <div class="content">
+        
+
+        
+        欢迎分享交流 XD<br>本文地址：<a href="/2016/06/17/design-pattern-CVA/" target="_blank" rel="external">http://vestin.github.io/2016/06/17/design-pattern-CVA/</a>
+        
+    </div>
+    <footer>
+        <a href="http://vestin.github.io">
+            <img src="/img/avatar.jpg" alt="Vestin">
+            Vestin
+        </a>
+    </footer>
+</blockquote>
+
+        
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/design-pattern/">design pattern</a></li></ul>
+
+
+            
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2016/07/04/design-pattern-template-pattern/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">design-pattern-template-pattern</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2016/06/17/design-pattern-adapter-pattern/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">design-pattern-adapter-pattern</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>This blog is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.</span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>Vestin &copy; 2016 - 2017</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: false, REWARD: false };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = 'for freedom!!!';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '(つェ⊂)咦!又好了!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>

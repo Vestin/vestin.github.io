@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    <title>factory pattern | horizon | Vestin&#39;s blog</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="design pattern">
+    <meta name="description" content="detail of factory pattern">
+<meta name="keywords" content="design pattern">
+<meta property="og:type" content="article">
+<meta property="og:title" content="factory pattern">
+<meta property="og:url" content="http://vestin.github.io/2016/04/18/design-pattern-factory-pattern/index.html">
+<meta property="og:site_name" content="horizon">
+<meta property="og:description" content="detail of factory pattern">
+<meta property="og:locale" content="cn">
+<meta property="og:image" content="http://7xqgk3.com1.z0.glb.clouddn.com/image/design-pattern/static-factory-pattern.jpg">
+<meta property="og:image" content="http://7xqgk3.com1.z0.glb.clouddn.com/image/design-pattern/SimpleFactory.jpg">
+<meta property="og:image" content="http://7xqgk3.com1.z0.glb.clouddn.com/image/design-pattern/FactoryMethod.jpg">
+<meta property="og:image" content="http://7xqgk3.com1.z0.glb.clouddn.com/image/design-pattern/AbstractFactory.jpg">
+<meta property="og:updated_time" content="2017-10-19T08:44:29.055Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="factory pattern">
+<meta name="twitter:description" content="detail of factory pattern">
+<meta name="twitter:image" content="http://7xqgk3.com1.z0.glb.clouddn.com/image/design-pattern/static-factory-pattern.jpg">
+    
+        <link rel="alternate" type="application/atom+xml" title="horizon" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">Vestin</h5>
+          <a href="mailto:vestinzds@gmail.com" title="vestinzds@gmail.com" class="mail">vestinzds@gmail.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                Home
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                Archives
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                Categories
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/vestin" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/about"  >
+                <i class="icon icon-lg icon-heart"></i>
+                About Me
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">factory pattern</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">factory pattern</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2016-04-18T09:46:58.000Z" itemprop="datePublished" class="page-time">
+  2016-04-18
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/coding/">coding</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#工厂模式-Factory-Pattern"><span class="post-toc-number">1.</span> <span class="post-toc-text">工厂模式(Factory Pattern)</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#简单工厂模式"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">简单工厂模式</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#简单工厂模式的优缺点分析："><span class="post-toc-number">1.1.0.1.</span> <span class="post-toc-text">简单工厂模式的优缺点分析：</span></a></li></ol></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#工厂模式"><span class="post-toc-number">1.2.</span> <span class="post-toc-text">工厂模式</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#抽象工厂"><span class="post-toc-number">1.3.</span> <span class="post-toc-text">抽象工厂</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#简单工厂模式、工厂模式、抽象工厂模式的差别"><span class="post-toc-number">1.4.</span> <span class="post-toc-text">简单工厂模式、工厂模式、抽象工厂模式的差别</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#参考文章"><span class="post-toc-number">1.5.</span> <span class="post-toc-text">参考文章</span></a></li></ol></li></ol>
+        </nav>
+    </aside>
+    
+<article id="post-design-pattern-factory-pattern"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">factory pattern</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2016-04-18 17:46:58" datetime="2016-04-18T09:46:58.000Z"  itemprop="datePublished">2016-04-18</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/coding/">coding</a></li></ul>
+
+
+
+            
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <h1 id="工厂模式-Factory-Pattern"><a href="#工厂模式-Factory-Pattern" class="headerlink" title="工厂模式(Factory Pattern)"></a>工厂模式(Factory Pattern)</h1><p>[TOC]</p>
+<p>工厂模式是最重要的模式，因为大多数模式都需要用到工厂模式。如果不能正确的运用工厂模式，那么可以说无法成为合格的架构师。<br>多数设计模式的内容讲解的都是如何设计接口。接口如何产生呢？如果在客户代码（类库的使用者称之为客户）中直接使用具体类，那么就失去了接口的意义。因为接口的使用目的，就是要降低客户对具体类的依赖程度。如果在客户代码中直接使用接口，那么就造成了客户对具体类名称的依赖。（客户最终需要以某种方式指明所需要的具体类，如配置文件或代码，但是只需要指出一次，所以说降低对具体类的依赖程度）。要使客户代码不依赖具体类，唯一的方法，就是让客户代码不依赖具体类的部分不知道具体类的名称。知道具体类名称的部分，仅仅是配置部分。（配置文件或者配置代码）。<br>依赖不可能完全消除，除非二者毫无联系。但是可以将这种依赖的程度降到最低。<br>既然不能直接创建具体类，那么就需要通过一个创建者类来创建接口的实现类。这样就产生了工厂类。</p>
+<a id="more"></a>
+<h2 id="简单工厂模式"><a href="#简单工厂模式" class="headerlink" title="简单工厂模式"></a>简单工厂模式</h2><blockquote>
+<p><strong>工厂模式</strong> 简单工厂模式是属于创建型模式，又叫做静态工厂方法（Static Factory Method）模式</p>
+</blockquote>
+<p>简单工厂模式的工厂类一般是使用静态方法，通过接收的参数的不同来返回不同的对象实例。</p>
+<p>简单工厂模式是由一个工厂对象决定创建出哪一种产品类的实例。简单工厂模式是工厂模式家族中最简单实用的模式，可以理解为是不同工厂模式的一个特殊实现。</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://7xqgk3.com1.z0.glb.clouddn.com/image/design-pattern/static-factory-pattern.jpg" alt="Static Factory Pattern" title="">
+                </div>
+                <div class="image-caption">Static Factory Pattern</div>
+            </figure>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://7xqgk3.com1.z0.glb.clouddn.com/image/design-pattern/SimpleFactory.jpg" alt="simple factory pattern" title="">
+                </div>
+                <div class="image-caption">simple factory pattern</div>
+            </figure>
+<blockquote>
+<p>Static Factory Pattern UMP map</p>
+</blockquote>
+<p>角色分工：</p>
+<ul>
+<li><strong>工厂（Creator）角色</strong><ul>
+<li>简单工厂模式的核心，它负责实现创建所有实例的内部逻辑。工厂类的创建产品类的方法可以被外界直接调用，创建所需的产品对象。</li>
+</ul>
+</li>
+<li>抽象产品（Product）角色<ul>
+<li>简单工厂模式所创建的所有对象的父类，它负责描述所有实例所共有的公共接口。</li>
+</ul>
+</li>
+<li>具体产品（Concrete Product）角色<ul>
+<li>是简单工厂模式的创建目标，所有创建的对象都是充当这个角色的某个具体类的实例。<h4 id="简单工厂模式的优缺点分析："><a href="#简单工厂模式的优缺点分析：" class="headerlink" title="简单工厂模式的优缺点分析："></a>简单工厂模式的优缺点分析：</h4></li>
+</ul>
+</li>
+</ul>
+<p><strong>优点：</strong></p>
+<p><em>有利于系统优化</em></p>
+<p>工厂类是整个模式的关键所在。它包含必要的判断逻辑，能够根据外界给定的信息，决定究竟应该创建哪个具体类的对象。用户在使用时可以直接根据工厂类去创建所需的实例，而无需了解这些对象是如何创建以及如何组织的。有利于整个软件体系结构的优化。</p>
+<p><strong>缺点：</strong></p>
+<p><em>违反了单一职责原则(SRP),开放-封闭原则(OCP)</em></p>
+<p>由于工厂类集中了所有实例的创建逻辑，这就直接导致一旦这个工厂出了问题，所有的客户端都会受到牵连；而且由于简单工厂模式的产品室基于一个共同的抽象类或者接口，这样一来，但产品的种类增加的时候，即有不同的产品接口或者抽象类的时候，工厂类就需要判断何时创建何种种类的产品，这就和创建何种种类产品的产品相互混淆在了一起，违背了单一职责，导致系统丧失灵活性和可维护性。而且更重要的是，简单工厂模式违背了“开放封闭原则”，就是违背了“系统对扩展开放，对修改关闭”的原则，因为当我新增加一个产品的时候必须修改工厂类，相应的工厂类就需要重新编译一遍。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div></pre></td><td class="code"><pre><div class="line">//抽象产品</div><div class="line">interface Car&#123;</div><div class="line">    abstract public run();</div><div class="line">&#125;</div><div class="line"></div><div class="line">//具体产品</div><div class="line">Class Jeep&#123;</div><div class="line">    public function run()&#123;</div><div class="line">        echo &apos;Jeep&apos;;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">Class BMW&#123;</div><div class="line">    public function run()&#123;</div><div class="line">        echo &apos;BMW&apos;;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">//简单工厂</div><div class="line">Class SimpleCarFactory&#123;</div><div class="line">    static public createCar(type)&#123;</div><div class="line">            switch(type)&#123;</div><div class="line">                case 1:</div><div class="line">                    return new Jeep;</div><div class="line">                case 2:</div><div class="line">                    return new BMW;</div><div class="line">            &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">//test</div><div class="line">$car = SimpleCarFactory::createCar(1);</div><div class="line">$car-&gt;run(); //Jeep</div><div class="line"></div><div class="line">$car = SimpleCarFactory::createCar(2);</div><div class="line">$car-&gt;run(); //BMW</div></pre></td></tr></table></figure>
+<h2 id="工厂模式"><a href="#工厂模式" class="headerlink" title="工厂模式"></a>工厂模式</h2><blockquote>
+<p>工厂方法是针对每一种产品提供一个工厂类。通过不同的工厂实例来创建不同的产品实例。<br>在同一等级(产品)结构中，支持增加任意产品。</p>
+</blockquote>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://7xqgk3.com1.z0.glb.clouddn.com/image/design-pattern/FactoryMethod.jpg" alt="factory-pattern-image" title="">
+                </div>
+                <div class="image-caption">factory-pattern-image</div>
+            </figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div></pre></td><td class="code"><pre><div class="line">//汽车产品</div><div class="line">interface Car&#123;</div><div class="line">    public function run();</div><div class="line">&#125;</div><div class="line"></div><div class="line">//具体产品jeep</div><div class="line">Class Jeep implements Car&#123;</div><div class="line">    public function run()&#123;</div><div class="line">        echo &apos;jeep run...&apos;;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">//具体产品BMW</div><div class="line">Class BMW implements Car&#123;</div><div class="line">    public function run()&#123;</div><div class="line">        echo &apos;BMW run...&apos;;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">//工厂抽象</div><div class="line">abstract Class CarFactory&#123;</div><div class="line">    abstract public function createCar();</div><div class="line">&#125;</div><div class="line"></div><div class="line">//Jeep 工厂</div><div class="line">Class JeepCarFactory&#123;</div><div class="line">    public function createCar()&#123;</div><div class="line">        return new Jeep;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">//BMW 工厂</div><div class="line">Class BMWCarFactory&#123;</div><div class="line">    public function createCar()&#123;</div><div class="line">        return new BMW;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">//Client</div><div class="line">$factory = new JeepCarFactory;</div><div class="line">$car = $factory-&gt;createCar();</div><div class="line">$car-&gt;run();    //jeep run...</div><div class="line"></div><div class="line">$factory = new BMWCarFactory;</div><div class="line">$car = $factory-&gt;createCar();</div><div class="line">$car-&gt;run();    //bmw run...</div></pre></td></tr></table></figure>
+<h2 id="抽象工厂"><a href="#抽象工厂" class="headerlink" title="抽象工厂"></a>抽象工厂</h2><blockquote>
+<p>抽象工厂是应对产品族概念的。比如说，每个汽车公司可能要同时生产轿车，货车，客车，那么每一个工厂都要有创建轿车，货车和客车的方法。<br>应对产品族概念而生，增加新的产品线很容易，但是无法增加新的产品。</p>
+</blockquote>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://7xqgk3.com1.z0.glb.clouddn.com/image/design-pattern/AbstractFactory.jpg" alt="abstract factory pattern" title="">
+                </div>
+                <div class="image-caption">abstract factory pattern</div>
+            </figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div></pre></td><td class="code"><pre><div class="line">//抽象车</div><div class="line">interface Car&#123;</div><div class="line">    public function run();</div><div class="line">&#125;</div><div class="line"></div><div class="line">//抽象自行车</div><div class="line">interface Bike&#123;</div><div class="line">    public function run();</div><div class="line">&#125;</div><div class="line"></div><div class="line">//Jeep车</div><div class="line">Class Jeep implements Car&#123;</div><div class="line">    public function run()&#123;</div><div class="line">        echo &apos;Jeep run...&apos;.PHP_EOL;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">//Jeep自行车</div><div class="line">Class JeepBike implements Bike&#123;</div><div class="line">    public function run()&#123;</div><div class="line">        echo &apos;JeepBiked run...&apos;.PHP_EOL;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">//BMW车</div><div class="line">Class BMW implements Car&#123;</div><div class="line">    public function run()&#123;</div><div class="line">        echo &apos;BMW run..&apos;.PHP_EOL;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line">//BMW自行车</div><div class="line">Class BMWBike implements Bike&#123;</div><div class="line">    public function run()&#123;</div><div class="line">        echo &apos;BMWBike run..&apos;.PHP_EOL;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">//抽象交通工具生产工厂</div><div class="line">interface Vehicle&#123;</div><div class="line">    public function createCar();</div><div class="line">    public function createBike();</div><div class="line">&#125;</div><div class="line"></div><div class="line">//Jeep 工厂</div><div class="line">Class JeepFactory implements Vehicle&#123;</div><div class="line">    public function createCar()&#123;</div><div class="line">        return new Jeep;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    public function createBike()&#123;</div><div class="line">        return new JeepBike;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">//BMW 工厂</div><div class="line">Class BMWFactory implements Vehicle&#123;</div><div class="line">    public function createCar()&#123;</div><div class="line">        return new BMW;</div><div class="line">    &#125;</div><div class="line">    public function createBike()&#123;</div><div class="line">        return new BMWBike;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">//Client</div><div class="line">$factory = new JeepFactory;</div><div class="line">$car = $factory-&gt;createCar();</div><div class="line">$bike = $factory-&gt;createBike();</div><div class="line">$car-&gt;run();</div><div class="line">$bike-&gt;run();</div><div class="line"></div><div class="line">$factory = new BMWFactory;</div><div class="line">$car = $factory-&gt;createCar();</div><div class="line">$bike = $factory-&gt;createBike();</div><div class="line">$car-&gt;run();</div><div class="line">$bike-&gt;run();</div></pre></td></tr></table></figure>
+<h2 id="简单工厂模式、工厂模式、抽象工厂模式的差别"><a href="#简单工厂模式、工厂模式、抽象工厂模式的差别" class="headerlink" title="简单工厂模式、工厂模式、抽象工厂模式的差别"></a>简单工厂模式、工厂模式、抽象工厂模式的差别</h2><blockquote>
+<p>可以参考文章<a href="http://www.cnblogs.com/jy02414216/archive/2012/08/10/2633084.html" target="_blank" rel="external">三种工厂模式的差别</a></p>
+</blockquote>
+<p>简单工厂 ： 用来生产同一等级结构中的任意产品。（对于增加新的产品，无能为力）</p>
+<p>工厂方法 ：用来生产同一等级结构中的固定产品。（支持增加任意产品）<br>抽象工厂 ：用来生产不同产品族的全部产品。（对于增加新的产品，无能为力；支持增加产品族）  </p>
+<p>以上三种工厂 方法在等级结构和产品族这两个方向上的支持程度不同。所以要根据情况考虑应该使用哪种方法。</p>
+<p>简单工厂，一般是两级结构。工厂类创建接口。随着接口创建复杂性的增强，可能在接口创建的过程中，一个创建者类，无法承担创建所有的接口类的职责。可能会有这样的情况，我们定义了一个接口，有6个实现类分别是123456号。但是，这六个实现类不可能用一个工厂创建出来，因为123号是windows下的实现，而456号是linux上的实现。（假设我们使用的语言不是广大人民群众热爱的java语言），那么这个时候，我还需要客户方用相同的方式来创建这个借口，而不是在代码中到处写</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">Java代码 :</div><div class="line">if (操作系统==&quot;windows&quot;);&#123;   </div><div class="line">...   </div><div class="line">&#125;   </div><div class="line">else&#123;   </div><div class="line">...   </div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>那样就太麻烦了。设计模式就是为了减少麻烦，而不是什么别的废话，比如什么太极八卦、天人合一、面向xx之类的。因为怕麻烦，所以搞出设计模式这个咚咚减少麻烦。如果你发现用了设计模式更麻烦了，那么肯定是你用错了。<br>这个时候为了省事，我就把工厂也抽象成一个接口（因为我有两个相似的工厂，如果只有一个，我还废话什么呢），这样就成了工厂方法。<br>当然，既然工厂方法成了一个接口，那么当然也需要用一个工厂来创建它。这个时候，创建是三级结构，简单工厂（此时是工厂的工厂）创建工厂接口（本来是个类，现在因为进一步的抽象，成为接口了），工厂接口创建产品。<br>过了一段时间，随着我们的工厂业务不断发展，我们有了很多产品。比如，我们有锤子和钉子两种产品。这两种产品都有windows品牌和linux品牌的。我们给锤子和钉子各自定义了一个创建的接口。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">Java代码 :</div><div class="line">interface 锤子工厂&#123;   </div><div class="line">造锤子（）；   </div><div class="line">&#125;   </div><div class="line">interface 钉子工厂&#123;   </div><div class="line">造钉子();;   </div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>可是，我们发现某些用户，用windows的锤子去敲linux的钉子，从而把程序敲出了bug。这当然是我们的错误，因为我们违反了一条金科玉律：<br>要想使你的程序稳定运行，你假设用户是猪。所以，我们把锤子和钉子的工厂合并，让一个工厂只能造出配套的锤子和钉子，这样猪就没有犯错误的机会了。于是我们搞出一个抽象工厂：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">interface 铁匠铺&#123;</div><div class="line">造锤子（）；</div><div class="line">造钉子();</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>当然，这个铁匠铺是个接口，所以同样需要用一个工厂来创建它。所以，这个时候，工厂还是三级结构。<br>我们的工厂，业务很多，而且产品一般都是配套使用的（这样可以多骗点钱），所以，我们大多数情况下，都是使用抽象工厂和简单工厂。简单工厂用来创建工厂，抽象工厂创建产品。<br>工厂的作用，就是创建接口。<br>其实我们不知道什么是设计模式，我们只是怕麻烦。什么是麻烦呢？我们觉得把同样的代码写两遍就非常麻烦。所以，我们宁可多写几句，也要解决麻烦。猪不怕麻烦，可以日复一日的重复相同的事情，可是我们不是猪。</p>
+<h2 id="参考文章"><a href="#参考文章" class="headerlink" title="参考文章"></a>参考文章</h2><ul>
+<li><a href="http://www.cnblogs.com/jy02414216/archive/2012/08/10/2633084.html" target="_blank" rel="external">http://www.cnblogs.com/jy02414216/archive/2012/08/10/2633084.html</a></li>
+<li><a href="http://blog.csdn.net/superbeck/article/details/4446177" target="_blank" rel="external">http://blog.csdn.net/superbeck/article/details/4446177</a></li>
+<li><a href="http://blog.chinaunix.net/uid-25958655-id-4243289.html" target="_blank" rel="external">http://blog.chinaunix.net/uid-25958655-id-4243289.html</a></li>
+<li><a href="http://wxg6203.iteye.com/blog/740229" target="_blank" rel="external">http://wxg6203.iteye.com/blog/740229</a></li>
+</ul>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    <div class="content">
+        
+
+        
+        欢迎分享交流 XD<br>本文地址：<a href="/2016/04/18/design-pattern-factory-pattern/" target="_blank" rel="external">http://vestin.github.io/2016/04/18/design-pattern-factory-pattern/</a>
+        
+    </div>
+    <footer>
+        <a href="http://vestin.github.io">
+            <img src="/img/avatar.jpg" alt="Vestin">
+            Vestin
+        </a>
+    </footer>
+</blockquote>
+
+        
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/design-pattern/">design pattern</a></li></ul>
+
+
+            
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2016/04/19/RPC-http/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">RPC-http</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2016/04/18/design-pattern-decorator-pattern/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">decorator pattern</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>This blog is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.</span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>Vestin &copy; 2016 - 2017</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: false, REWARD: false };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = 'for freedom!!!';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '(つェ⊂)咦!又好了!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>

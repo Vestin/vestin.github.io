@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    <title>sass 2 css gulp workflow,minify html,minify css | horizon | Vestin&#39;s blog</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="tools">
+    <meta name="description" content="前端基础工作流：sass自动化编辑成css。sass 完整安装过程，配合nodejs ,gulp 工具，实现自动化编译成css。html压缩，css压缩流">
+<meta name="keywords" content="tools">
+<meta property="og:type" content="article">
+<meta property="og:title" content="sass 2 css gulp workflow,minify html,minify css">
+<meta property="og:url" content="http://vestin.github.io/2016/05/04/sass-node-gulp/index.html">
+<meta property="og:site_name" content="horizon">
+<meta property="og:description" content="前端基础工作流：sass自动化编辑成css。sass 完整安装过程，配合nodejs ,gulp 工具，实现自动化编译成css。html压缩，css压缩流">
+<meta property="og:locale" content="cn">
+<meta property="og:updated_time" content="2017-10-19T08:44:29.055Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="sass 2 css gulp workflow,minify html,minify css">
+<meta name="twitter:description" content="前端基础工作流：sass自动化编辑成css。sass 完整安装过程，配合nodejs ,gulp 工具，实现自动化编译成css。html压缩，css压缩流">
+    
+        <link rel="alternate" type="application/atom+xml" title="horizon" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">Vestin</h5>
+          <a href="mailto:vestinzds@gmail.com" title="vestinzds@gmail.com" class="mail">vestinzds@gmail.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                Home
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                Archives
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                Categories
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/vestin" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/about"  >
+                <i class="icon icon-lg icon-heart"></i>
+                About Me
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">sass 2 css gulp workflow,minify html,minify css</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">sass 2 css gulp workflow,minify html,minify css</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2016-05-04T11:34:59.000Z" itemprop="datePublished" class="page-time">
+  2016-05-04
+</time>
+
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Sass安装"><span class="post-toc-number">1.</span> <span class="post-toc-text">Sass安装</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#nodejs安装"><span class="post-toc-number">2.</span> <span class="post-toc-text">nodejs安装</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#gulp安装"><span class="post-toc-number">3.</span> <span class="post-toc-text">gulp安装</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#sass-转-css-操作流"><span class="post-toc-number">4.</span> <span class="post-toc-text">sass 转 css 操作流</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#css-压缩"><span class="post-toc-number">5.</span> <span class="post-toc-text">css 压缩</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#html-压缩"><span class="post-toc-number">6.</span> <span class="post-toc-text">html 压缩</span></a></li></ol>
+        </nav>
+    </aside>
+    
+<article id="post-sass-node-gulp"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">sass 2 css gulp workflow,minify html,minify css</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2016-05-04 19:34:59" datetime="2016-05-04T11:34:59.000Z"  itemprop="datePublished">2016-05-04</time>
+
+            
+
+
+            
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <p>目前sass提供了观察文件变化，自动将sass文件编译成css的功能。如：<br>You can also tell Sass to watch the file and update the CSS every time the Sass file changes:<br><code>sass --watch input.scss:output.css</code><br>If you have a directory with many Sass files, you can also tell Sass to watch the entire directory:<br><code>sass --watch app/sass:public/stylesheets</code><br>在有些机子上跟踪编译非常慢。使用不便。<br>如果想更顺手的完成更复杂的编译，就需要使用nodejs,gulp 工具进行处理。</p>
+<p>[TOC]</p>
+<p>用到的Gulp插件</p>
+<ul>
+<li><a href="https;//www.npmjs.com/package/gulp-sass">gulp-sass</a></li>
+<li><a href="https://www.npmjs.com/package/gulp-clean-css/" target="_blank" rel="external">gulp-clean-css</a></li>
+<li><a href="https://www.npmjs.com/package/gulp-htmlmin/" target="_blank" rel="external">gulp-htmlmin</a></li>
+</ul>
+<h3 id="Sass安装"><a href="#Sass安装" class="headerlink" title="Sass安装"></a>Sass安装</h3><p>环境ubuntu 16.04</p>
+<ol>
+<li><code>sudo apt-get install ruby</code></li>
+<li><code>sudo gem install sass</code><a id="more"></a>
+国内会报错，如下<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">sudo gem install sass</div><div class="line">ERROR:  While executing gem ... (Gem::RemoteFetcher::FetchError)</div><div class="line">Errno::ECONNRESET: Connection reset by peer - SSL_connect (https://api.rubygems.org/quick/Marshal.4.8/sass-3.4.22.gemspec.rz)</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>原因是国内和谐gem，解决方法是使用<a href="https://ruby.taobao.org/" target="_blank" rel="external">淘宝镜像</a>如下<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">$ gem sources --add https://ruby.taobao.org/ --remove https://rubygems.org/</div><div class="line">$ gem sources -l</div><div class="line">*** CURRENT SOURCES ***</div><div class="line">https://ruby.taobao.org</div><div class="line"># 请确保只有 ruby.taobao.org</div></pre></td></tr></table></figure></p>
+<p>重新执行<code>sudo gem install sass</code></p>
+<h3 id="nodejs安装"><a href="#nodejs安装" class="headerlink" title="nodejs安装"></a>nodejs安装</h3><p>安装参考<a href="https://nodejs.org/en/" target="_blank" rel="external">nodejs.org</a><br>npm访问慢的问题参考<a href="http://npm.taobao.org/" target="_blank" rel="external">npm.taobao.org淘宝镜像</a></p>
+<h3 id="gulp安装"><a href="#gulp安装" class="headerlink" title="gulp安装"></a>gulp安装</h3><blockquote>
+<p>gulp 介绍<br><a href="http://gulpjs.com/" target="_blank" rel="external">gulpjs.com</a><br><a href="http://www.gulpjs.com.cn/" target="_blank" rel="external">gulp中文网</a></p>
+</blockquote>
+<p>gulp 安装参考<a href="http://www.gulpjs.com.cn/docs/getting-started/" target="_blank" rel="external">gulp入门指南</a><br>简易步骤：<br>在项目更目录执行<br><code>npm install --save-dev gulp</code><br><strong>安装gulp-sass插件,详细说明</strong><a href="https://www.npmjs.com/package/gulp-sass/" target="_blank" rel="external">gulp-sass</a><br><code>npm install gulp-sass</code></p>
+<h3 id="sass-转-css-操作流"><a href="#sass-转-css-操作流" class="headerlink" title="sass 转 css 操作流"></a>sass 转 css 操作流</h3><p>示例项目目录结构<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">-node_modules   //node 模块</div><div class="line">-scss           //编译前的scss文件</div><div class="line"> --test.scss</div><div class="line">-css            //编译后的css文件</div><div class="line"> --test.css</div><div class="line">--gulpfile.js   //gulp任务执行工具配置文件</div><div class="line">--index.html</div></pre></td></tr></table></figure></p>
+<p>gulpfile.js文件内容<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">var gulp = require(&apos;gulp&apos;);</div><div class="line">var sass = require(&apos;gulp-sass&apos;);</div><div class="line"></div><div class="line">gulp.task(&apos;scss&apos;,function()&#123;</div><div class="line">	gulp.src(&apos;./scss/*.scss&apos;)  //这里是scss文件的目录</div><div class="line">		.pipe(sass().on(&apos;error&apos;,sass.logError))</div><div class="line">		.pipe(gulp.dest(&apos;./css&apos;));  //这里是编译后css存放的目录</div><div class="line">&#125;)</div><div class="line"></div><div class="line">gulp.task(&apos;default&apos;,function()&#123;</div><div class="line">	gulp.watch(&apos;./scss/*.scss&apos;,[&apos;scss&apos;]);  //在这里执行文件观察任务，发现变化执行上面定义好的 `scss`编译任务。</div><div class="line">&#125;)</div></pre></td></tr></table></figure></p>
+<p>启动：<br><code>node_modules/.bin/gulp gulpfile.js</code><br>提示<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">[19:05:18] Using gulpfile ~/test/gulpfile.js</div><div class="line">[19:05:18] Starting &apos;default&apos;...</div><div class="line">[19:05:18] Finished &apos;default&apos; after 20 ms</div></pre></td></tr></table></figure></p>
+<p>打开编辑器编辑scss下test.scss文件，保存，查看css下test.css文件，已经编译好了。</p>
+<h3 id="css-压缩"><a href="#css-压缩" class="headerlink" title="css 压缩"></a>css 压缩</h3><p>安装 <code>npm i gulp-clean-css --save-dev</code><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">var gulp = require(&apos;gulp&apos;);</div><div class="line">var cleanCss = require(&apos;gulp-clean-css&apos;);</div><div class="line"></div><div class="line">gulp.task(&apos;minify-css&apos;,function()&#123;</div><div class="line">    gulp.src(&apos;./css/*.css&apos;)</div><div class="line">                .pipe(cleanCSS())</div><div class="line">                .pipe(gulp.dest(&apos;./mincss/&apos;));</div><div class="line">    &#125;)</div></pre></td></tr></table></figure></p>
+<p>使用 <code>gulp minify-css</code></p>
+<h3 id="html-压缩"><a href="#html-压缩" class="headerlink" title="html 压缩"></a>html 压缩</h3><p>安装 <code>npm i gulp-htmlmin --save-dev</code><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">var gulp = require(&apos;gulp&apos;);</div><div class="line">var htmlmin = require(&apos;gulp-htmlmin&apos;);</div><div class="line"></div><div class="line">gulp.task(&apos;htmlmin&apos;,function()&#123;</div><div class="line">    gulp.src(&apos;./*.html&apos;)</div><div class="line">        .pipe(htmlmin(&#123;collapseWhitespace:true&#125;))</div><div class="line">        .pipe(gulp.dest(&apos;./minhtml/&apos;));</div><div class="line">    &#125;)</div></pre></td></tr></table></figure></p>
+<p>使用 <code>gulp htmlmin</code></p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    <div class="content">
+        
+
+        
+        欢迎分享交流 XD<br>本文地址：<a href="/2016/05/04/sass-node-gulp/" target="_blank" rel="external">http://vestin.github.io/2016/05/04/sass-node-gulp/</a>
+        
+    </div>
+    <footer>
+        <a href="http://vestin.github.io">
+            <img src="/img/avatar.jpg" alt="Vestin">
+            Vestin
+        </a>
+    </footer>
+</blockquote>
+
+        
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/tools/">tools</a></li></ul>
+
+
+            
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2016/05/06/livereload/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">livereload</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2016/04/28/bridge-pattern/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">bridge pattern 桥接模式</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>This blog is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.</span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>Vestin &copy; 2016 - 2017</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: false, REWARD: false };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = 'for freedom!!!';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '(つェ⊂)咦!又好了!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>

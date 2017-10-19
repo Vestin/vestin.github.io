@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    <title>design-pattern-principle | horizon | Vestin&#39;s blog</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="design pattern">
+    <meta name="description" content="design-pattern##设计原则  封装变化。 针对接口编程，而不是针对实现编程。 多用组合，少用继承。 为交互对象之间的松耦合设计而努力。 开放-关闭原则（对扩展开放，对修改关闭）。">
+<meta name="keywords" content="design pattern">
+<meta property="og:type" content="article">
+<meta property="og:title" content="design-pattern-principle">
+<meta property="og:url" content="http://vestin.github.io/2016/04/18/design-pattern-principle/index.html">
+<meta property="og:site_name" content="horizon">
+<meta property="og:description" content="design-pattern##设计原则  封装变化。 针对接口编程，而不是针对实现编程。 多用组合，少用继承。 为交互对象之间的松耦合设计而努力。 开放-关闭原则（对扩展开放，对修改关闭）。">
+<meta property="og:locale" content="cn">
+<meta property="og:updated_time" content="2017-10-19T08:44:29.055Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="design-pattern-principle">
+<meta name="twitter:description" content="design-pattern##设计原则  封装变化。 针对接口编程，而不是针对实现编程。 多用组合，少用继承。 为交互对象之间的松耦合设计而努力。 开放-关闭原则（对扩展开放，对修改关闭）。">
+    
+        <link rel="alternate" type="application/atom+xml" title="horizon" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">Vestin</h5>
+          <a href="mailto:vestinzds@gmail.com" title="vestinzds@gmail.com" class="mail">vestinzds@gmail.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                Home
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                Archives
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                Categories
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/vestin" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/about"  >
+                <i class="icon icon-lg icon-heart"></i>
+                About Me
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">design-pattern-principle</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">design-pattern-principle</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2016-04-18T06:36:28.000Z" itemprop="datePublished" class="page-time">
+  2016-04-18
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/coding/">coding</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#design-pattern"><span class="post-toc-number">1.</span> <span class="post-toc-text">design-pattern</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#依赖倒置原则"><span class="post-toc-number">1.0.1.</span> <span class="post-toc-text">依赖倒置原则</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#理性怀疑原则"><span class="post-toc-number">1.0.2.</span> <span class="post-toc-text">理性怀疑原则</span></a></li></ol></li></ol></li></ol>
+        </nav>
+    </aside>
+    
+<article id="post-design-pattern-principle"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">design-pattern-principle</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2016-04-18 14:36:28" datetime="2016-04-18T06:36:28.000Z"  itemprop="datePublished">2016-04-18</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/coding/">coding</a></li></ul>
+
+
+
+            
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <h1 id="design-pattern"><a href="#design-pattern" class="headerlink" title="design-pattern"></a>design-pattern</h1><p>##设计原则</p>
+<ul>
+<li>封装变化。</li>
+<li>针对接口编程，而不是针对实现编程。</li>
+<li>多用组合，少用继承。</li>
+<li>为交互对象之间的松耦合设计而努力。</li>
+<li>开放-关闭原则（对扩展开放，对修改关闭）。</li>
+</ul>
+<a id="more"></a>
+<ul>
+<li>依赖倒置原则（要依赖抽象，不要依赖具体类）。<br>指导方针，帮助避免违反依赖倒置原则：<ul>
+<li>变量不可以持有具体类的引用。</li>
+<li>不要让类派生自具体类。</li>
+<li>不要覆盖基类中已实现的方法。</li>
+</ul>
+</li>
+<li>最少知识原则（Least Knowledge,只和朋友交谈)。<br>就任何对象而言，在该对象的方法内，我们只应该调用属于以下范围的方法：<ul>
+<li>该对象本身</li>
+<li>被当作方法的参数而传递进来的对象</li>
+<li>此方法所创建或实例化的任何对象</li>
+<li>对象的任何组件</li>
+</ul>
+</li>
+<li>Hollywood principle：”Don’t call me; I’ll call you.”<ul>
+<li><a href="http://www.tuicool.com/articles/2ma2aa" target="_blank" rel="external">read more</a></li>
+</ul>
+</li>
+<li>单一职责原则（Single responsibility principle）（一个类应该只有一个引起变化的原因）</li>
+</ul>
+<h3 id="依赖倒置原则"><a href="#依赖倒置原则" class="headerlink" title="依赖倒置原则"></a>依赖倒置原则</h3><p>依赖倒置原则（Dependence Inversion Principle）是程序要依赖于抽象接口，不要依赖于具体实现。简单的说就是要求对抽象进行编程，不要对实现进行编程，这样就降低了客户与实现模块间的耦合。</p>
+<ol>
+<li>高层次的模块不应该依赖于低层次的模块，他们都应该依赖于抽象。</li>
+<li>抽象不应该依赖于具体实现，具体实现应该依赖于抽象。</li>
+</ol>
+<h3 id="理性怀疑原则"><a href="#理性怀疑原则" class="headerlink" title="理性怀疑原则"></a>理性怀疑原则</h3><p>模式本身非常有用，但是应该将他们用作一种思考问题的手段，而不是解决问题的处方。注意在使用模式的时候出现以下问题</p>
+<table>
+<thead>
+<tr>
+<th>错误</th>
+<th>原因</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>浮于表面</td>
+<td>仅仅对低层情况有了一些肤浅的理解，就草草选择一个模式</td>
+</tr>
+<tr>
+<td>偏见</td>
+<td>对模式过于偏信。根据已经选定的模式/模型来解释所有数据，不愿意对自己的偏见有任何质疑</td>
+</tr>
+<tr>
+<td>错选</td>
+<td>不理解模式的适用背景和条件（对模式的分类关系理解不全），选择了错误的模式</td>
+</tr>
+<tr>
+<td>削足适履</td>
+<td>忽略了实际的、具体的实例行为中的例外情况，不符合模式中所表达的理论。建模出的对象过于僵硬，不符合实际情况</td>
+</tr>
+</tbody>
+</table>
+<p>模式实现的具体方式应该由问题的本质、约束条件和需求等等决定，而不是根据你在某本模式书中碰巧看到的某个实现。</p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    <div class="content">
+        
+
+        
+        欢迎分享交流 XD<br>本文地址：<a href="/2016/04/18/design-pattern-principle/" target="_blank" rel="external">http://vestin.github.io/2016/04/18/design-pattern-principle/</a>
+        
+    </div>
+    <footer>
+        <a href="http://vestin.github.io">
+            <img src="/img/avatar.jpg" alt="Vestin">
+            Vestin
+        </a>
+    </footer>
+</blockquote>
+
+        
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/design-pattern/">design pattern</a></li></ul>
+
+
+            
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2016/04/18/design-pattern-Publish-Subscribe/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">Publish/Subscribe Pattern</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2016/04/18/markdown-language/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">markdown language</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>This blog is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.</span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>Vestin &copy; 2016 - 2017</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: false, REWARD: false };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = 'for freedom!!!';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '(つェ⊂)咦!又好了!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>

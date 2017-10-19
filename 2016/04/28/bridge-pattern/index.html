@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    <title>bridge pattern 桥接模式 | horizon | Vestin&#39;s blog</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="design pattern">
+    <meta name="description" content="桥接模式(bridge pattern)将抽象和实现解耦，使得二者可以独立地变化。一般用在两个或多个维度（抽象）的变化。">
+<meta name="keywords" content="design pattern">
+<meta property="og:type" content="article">
+<meta property="og:title" content="bridge pattern 桥接模式">
+<meta property="og:url" content="http://vestin.github.io/2016/04/28/bridge-pattern/index.html">
+<meta property="og:site_name" content="horizon">
+<meta property="og:description" content="桥接模式(bridge pattern)将抽象和实现解耦，使得二者可以独立地变化。一般用在两个或多个维度（抽象）的变化。">
+<meta property="og:locale" content="cn">
+<meta property="og:image" content="http://7xqgk3.com1.z0.glb.clouddn.com/image/design-pattern/bridge-pattern.jpg">
+<meta property="og:updated_time" content="2017-10-19T08:44:29.055Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="bridge pattern 桥接模式">
+<meta name="twitter:description" content="桥接模式(bridge pattern)将抽象和实现解耦，使得二者可以独立地变化。一般用在两个或多个维度（抽象）的变化。">
+<meta name="twitter:image" content="http://7xqgk3.com1.z0.glb.clouddn.com/image/design-pattern/bridge-pattern.jpg">
+    
+        <link rel="alternate" type="application/atom+xml" title="horizon" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">Vestin</h5>
+          <a href="mailto:vestinzds@gmail.com" title="vestinzds@gmail.com" class="mail">vestinzds@gmail.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                Home
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                Archives
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                Categories
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/vestin" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/about"  >
+                <i class="icon icon-lg icon-heart"></i>
+                About Me
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">bridge pattern 桥接模式</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">bridge pattern 桥接模式</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2016-04-28T03:03:38.000Z" itemprop="datePublished" class="page-time">
+  2016-04-28
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/coding/">coding</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#桥接模式-bridge-pattern"><span class="post-toc-number">1.</span> <span class="post-toc-text">桥接模式(bridge pattern)</span></a></li></ol>
+        </nav>
+    </aside>
+    
+<article id="post-bridge-pattern"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">bridge pattern 桥接模式</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2016-04-28 11:03:38" datetime="2016-04-28T03:03:38.000Z"  itemprop="datePublished">2016-04-28</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/coding/">coding</a></li></ul>
+
+
+
+            
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <h3 id="桥接模式-bridge-pattern"><a href="#桥接模式-bridge-pattern" class="headerlink" title="桥接模式(bridge pattern)"></a>桥接模式(bridge pattern)</h3><p>将<strong>抽象</strong>和<strong>实现</strong>解耦，使得二者可以<strong>独立地变化</strong>。<br>一般用在两个或多个维度（抽象）的变化。</p>
+<a id="more"></a>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://7xqgk3.com1.z0.glb.clouddn.com/image/design-pattern/bridge-pattern.jpg" alt="bridge" title="">
+                </div>
+                <div class="image-caption">bridge</div>
+            </figure>
+<p>例如：<br>抽象1：Road 具体（高速公路，乡村公路)<br>抽象2：Car  具体（Jeep,BMW)<br>Jeep 可以在告诉公路上跑，也可以在乡村公路上跑，同样BMW也可以。</p>
+<p>实现例子：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div></pre></td><td class="code"><pre><div class="line">&lt;?php</div><div class="line"></div><div class="line">Abstract Road&#123;</div><div class="line">    /**</div><div class="line">    * 在路上跑</div><div class="line">    /*</div><div class="line">    Abstract function onRoad();</div><div class="line">&#125;</div><div class="line"></div><div class="line">Class SpeedRoad extends Road()&#123;</div><div class="line">    public function onRoad()&#123;</div><div class="line">        echo &apos;在高速公路上&apos;;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">Class CountryRoad extends Road()&#123;</div><div class="line">    public function onRoad()&#123;</div><div class="line">        echo &apos;在乡村公路上&apos;;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">Abstract Car&#123;</div><div class="line"></div><div class="line">    public $road;</div><div class="line"></div><div class="line">    //车可以跑</div><div class="line">    Abstract function run();</div><div class="line"></div><div class="line">&#125;</div><div class="line"></div><div class="line">Class Jeep extends Car&#123;</div><div class="line">    public function run()&#123;</div><div class="line">        echo &apos;Jepp 跑&apos;;</div><div class="line">        $this-&gt;road-&gt;onRoad();</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">Class BMW extends Car&#123;</div><div class="line">    public function run()&#123;</div><div class="line">        echo &apos;BMW 跑&apos;;</div><div class="line">        $this-&gt;road-&gt;onRoad();</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">//test</div><div class="line">$speedRoad = new SpeedRoad;</div><div class="line">$countryRoad = new CountryRoad;</div><div class="line">$Jeep = new Jeep();</div><div class="line">$Jeep-&gt;road = $speedRoad;</div><div class="line">$Jeep-&gt;run(); //Jepp 跑在高速公路上</div><div class="line"></div><div class="line">$jeep-&gt;road = $countryRoad;</div><div class="line">$jeep-&gt;run(); //Jepp 跑在乡村公路上</div><div class="line"></div><div class="line">$Bmw = new BMW;</div><div class="line">$Bmw-&gt;road = $speedRoad;</div><div class="line">$Bmw-&gt;run(); //BMW 跑在高速公路上</div><div class="line"></div><div class="line">$Bmw-&gt;road = $countryRoad;</div><div class="line">$Bmw-&gt;run(); //BMW 跑在乡村公路上</div></pre></td></tr></table></figure></p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    <div class="content">
+        
+
+        
+        欢迎分享交流 XD<br>本文地址：<a href="/2016/04/28/bridge-pattern/" target="_blank" rel="external">http://vestin.github.io/2016/04/28/bridge-pattern/</a>
+        
+    </div>
+    <footer>
+        <a href="http://vestin.github.io">
+            <img src="/img/avatar.jpg" alt="Vestin">
+            Vestin
+        </a>
+    </footer>
+</blockquote>
+
+        
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/design-pattern/">design pattern</a></li></ul>
+
+
+            
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2016/05/04/sass-node-gulp/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">sass 2 css gulp workflow,minify html,minify css</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2016/04/26/google-fonts-use-in-china/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">google fonts 国内使用解决方案</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>This blog is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.</span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>Vestin &copy; 2016 - 2017</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: false, REWARD: false };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = 'for freedom!!!';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '(つェ⊂)咦!又好了!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>
