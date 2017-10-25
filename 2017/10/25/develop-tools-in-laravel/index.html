@@ -13,24 +13,25 @@
     
     
     
-    <title>php hook 机制&amp;原理&amp;实现 | horizon | Vestin&#39;s blog</title>
+    <title>Larvel 开发中使用顺手的一些工具集 | horizon | Vestin&#39;s blog</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     
     <meta name="theme-color" content="#3F51B5">
     
     
-    <meta name="keywords" content="">
-    <meta name="description" content="Understanding the Shopware hook system Hooks and Events What should plugins use: hooks, events or something else?">
+    <meta name="keywords" content="tools,laravel">
+    <meta name="description" content="开发项目较多，使用到很多工具，记录下来，方便使用。 Larvel 开发中使用顺手的一些工具集  ide-helper">
+<meta name="keywords" content="tools,laravel">
 <meta property="og:type" content="article">
-<meta property="og:title" content="php hook 机制&amp;原理&amp;实现">
-<meta property="og:url" content="http://vestin.github.io/2017/04/08/php-hook/index.html">
+<meta property="og:title" content="Larvel 开发中使用顺手的一些工具集">
+<meta property="og:url" content="http://vestin.github.io/2017/10/25/develop-tools-in-laravel/index.html">
 <meta property="og:site_name" content="horizon">
-<meta property="og:description" content="Understanding the Shopware hook system Hooks and Events What should plugins use: hooks, events or something else?">
+<meta property="og:description" content="开发项目较多，使用到很多工具，记录下来，方便使用。 Larvel 开发中使用顺手的一些工具集  ide-helper">
 <meta property="og:locale" content="cn">
-<meta property="og:updated_time" content="2017-10-19T08:44:29.055Z">
+<meta property="og:updated_time" content="2017-10-25T08:12:17.047Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="php hook 机制&amp;原理&amp;实现">
-<meta name="twitter:description" content="Understanding the Shopware hook system Hooks and Events What should plugins use: hooks, events or something else?">
+<meta name="twitter:title" content="Larvel 开发中使用顺手的一些工具集">
+<meta name="twitter:description" content="开发项目较多，使用到很多工具，记录下来，方便使用。 Larvel 开发中使用顺手的一些工具集  ide-helper">
     
         <link rel="alternate" type="application/atom+xml" title="horizon" href="/atom.xml">
     
@@ -118,7 +119,7 @@
         <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
           <i class="icon icon-lg icon-navicon"></i>
         </a>
-        <div class="flex-col header-title ellipsis">php hook 机制&amp;原理&amp;实现</div>
+        <div class="flex-col header-title ellipsis">Larvel 开发中使用顺手的一些工具集</div>
         
         <div class="search-wrap" id="search-wrap">
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
@@ -136,11 +137,11 @@
 <header class="content-header post-header">
 
     <div class="container fade-scale">
-        <h1 class="title">php hook 机制&amp;原理&amp;实现</h1>
+        <h1 class="title">Larvel 开发中使用顺手的一些工具集</h1>
         <h5 class="subtitle">
             
-                <time datetime="2017-04-08T02:30:00.000Z" itemprop="datePublished" class="page-time">
-  2017-04-08
+                <time datetime="2017-10-25T07:34:54.000Z" itemprop="datePublished" class="page-time">
+  2017-10-25
 </time>
 
 
@@ -158,13 +159,20 @@
 
 <div class="container body-wrap">
     
-<article id="post-php-hook"
-  class="post-article article-type-post fade" itemprop="blogPost">
+    <aside class="post-widget">
+        <nav class="post-toc-wrap" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#ide-helper"><span class="post-toc-number">1.</span> <span class="post-toc-text">ide-helper</span></a></li></ol>
+        </nav>
+    </aside>
+    
+<article id="blog-develop-tools-in-laravel"
+  class="post-article article-type-blog fade" itemprop="blogPost">
 
     <div class="post-card">
-        <h1 class="post-card-title">php hook 机制&原理&实现</h1>
+        <h1 class="post-card-title">Larvel 开发中使用顺手的一些工具集</h1>
         <div class="post-meta">
-            <time class="post-time" title="2017-04-08 10:30:00" datetime="2017-04-08T02:30:00.000Z"  itemprop="datePublished">2017-04-08</time>
+            <time class="post-time" title="2017-10-25 15:34:54" datetime="2017-10-25T07:34:54.000Z"  itemprop="datePublished">2017-10-25</time>
 
             
 	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/coding/">coding</a></li></ul>
@@ -175,11 +183,18 @@
 
         </div>
         <div class="post-content" id="post-content" itemprop="postContent">
-            <ul>
-<li><a href="https://developers.shopware.com/blog/2015/06/09/understanding-the-shopware-hook-system/" target="_blank" rel="external">Understanding the Shopware hook system</a></li>
-<li><a href="https://craftcms.com/docs/plugins/hooks-and-events" target="_blank" rel="external">Hooks and Events</a></li>
-<li><a href="http://softwareengineering.stackexchange.com/questions/237876/what-should-plugins-use-hooks-events-or-something-else" target="_blank" rel="external">What should plugins use: hooks, events or something else?</a></li>
+            <p>开发项目较多，使用到很多工具，记录下来，方便使用。</p>
+<p><strong>Larvel 开发中使用顺手的一些工具集</strong></p>
+<ul>
+<li>ide-helper</li>
 </ul>
+<a id="more"></a>
+<h3 id="ide-helper"><a href="#ide-helper" class="headerlink" title="ide-helper"></a>ide-helper</h3><p><code>Laravel</code>中大量使用<code>facade</code>,使IDE识别困难,配合<code>Phpstorm</code>的<code>Laravel Plugin</code>插件使用，效果完美。</p>
+<ul>
+<li>laravel依赖包 <a href="https://github.com/barryvdh/laravel-ide-helper" target="_blank" rel="external">ide-helper</a></li>
+<li>Phpstorm插件 <a href="https://github.com/Haehnchen/idea-php-laravel-plugin" target="_blank" rel="external">laravel Plugin</a></li>
+</ul>
+<p>常用命令<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">//生成辅助文件</div><div class="line">php artisan ide-helper:generate</div><div class="line"></div><div class="line">//生成model的phpdoc</div><div class="line">php artisan ide-helper:models</div></pre></td></tr></table></figure></p>
 
         </div>
 
@@ -188,7 +203,7 @@
         
 
         
-        欢迎分享交流 XD<br>本文地址：<a href="/2017/04/08/php-hook/" target="_blank" rel="external">http://vestin.github.io/2017/04/08/php-hook/</a>
+        欢迎分享交流 XD<br>本文地址：<a href="/2017/10/25/develop-tools-in-laravel/" target="_blank" rel="external">http://vestin.github.io/2017/10/25/develop-tools-in-laravel/</a>
         
     </div>
     <footer>
@@ -204,6 +219,8 @@
 
         <div class="post-footer">
             
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/laravel/">laravel</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/tools/">tools</a></li></ul>
+
 
             
 
@@ -212,21 +229,14 @@
     </div>
 
     
-<nav class="post-nav flex-row flex-justify-between">
-  
-    <div class="waves-block waves-effect prev">
-      <a href="/2017/10/25/develop-tools-in-laravel/" id="post-prev" class="post-nav-link">
-        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
-        <h4 class="title">Larvel 开发中使用顺手的一些工具集</h4>
-      </a>
-    </div>
+<nav class="post-nav flex-row flex-justify-between flex-row-reverse">
   
 
   
     <div class="waves-block waves-effect next">
-      <a href="/2016/07/04/design-pattern-template-pattern/" id="post-next" class="post-nav-link">
+      <a href="/2017/04/08/php-hook/" id="post-next" class="post-nav-link">
         <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
-        <h4 class="title">design-pattern-template-pattern</h4>
+        <h4 class="title">php hook 机制&amp;原理&amp;实现</h4>
       </a>
     </div>
   

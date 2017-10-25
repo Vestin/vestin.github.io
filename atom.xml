@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://vestin.github.io/"/>
-  <updated>2017-10-19T08:44:29.055Z</updated>
+  <updated>2017-10-25T08:12:17.047Z</updated>
   <id>http://vestin.github.io/</id>
   
   <author>
@@ -15,6 +15,34 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Larvel 开发中使用顺手的一些工具集</title>
+    <link href="http://vestin.github.io/2017/10/25/develop-tools-in-laravel/"/>
+    <id>http://vestin.github.io/2017/10/25/develop-tools-in-laravel/</id>
+    <published>2017-10-25T07:34:54.000Z</published>
+    <updated>2017-10-25T08:12:17.047Z</updated>
+    
+    <content type="html"><![CDATA[<p>开发项目较多，使用到很多工具，记录下来，方便使用。</p><p><strong>Larvel 开发中使用顺手的一些工具集</strong></p><ul><li>ide-helper</li></ul><a id="more"></a><h3 id="ide-helper"><a href="#ide-helper" class="headerlink" title="ide-helper"></a>ide-helper</h3><p><code>Laravel</code>中大量使用<code>facade</code>,使IDE识别困难,配合<code>Phpstorm</code>的<code>Laravel Plugin</code>插件使用，效果完美。</p><ul><li>laravel依赖包 <a href="https://github.com/barryvdh/laravel-ide-helper" target="_blank" rel="external">ide-helper</a></li><li>Phpstorm插件 <a href="https://github.com/Haehnchen/idea-php-laravel-plugin" target="_blank" rel="external">laravel Plugin</a></li></ul><p>常用命令<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">//生成辅助文件</div><div class="line">php artisan ide-helper:generate</div><div class="line"></div><div class="line">//生成model的phpdoc</div><div class="line">php artisan ide-helper:models</div></pre></td></tr></table></figure></p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;开发项目较多，使用到很多工具，记录下来，方便使用。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Larvel 开发中使用顺手的一些工具集&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;ide-helper&lt;/li&gt;
+&lt;/ul&gt;
+    
+    </summary>
+    
+      <category term="coding" scheme="http://vestin.github.io/categories/coding/"/>
+    
+    
+      <category term="tools" scheme="http://vestin.github.io/tags/tools/"/>
+    
+      <category term="laravel" scheme="http://vestin.github.io/tags/laravel/"/>
+    
+  </entry>
   
   <entry>
     <title>php hook 机制&amp;原理&amp;实现</title>
@@ -63,6 +91,28 @@
   </entry>
   
   <entry>
+    <title>design-pattern-adapter-pattern</title>
+    <link href="http://vestin.github.io/2016/06/17/design-pattern-adapter-pattern/"/>
+    <id>http://vestin.github.io/2016/06/17/design-pattern-adapter-pattern/</id>
+    <published>2016-06-17T01:48:53.000Z</published>
+    <updated>2017-10-19T08:44:29.055Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="Adapter-Pattern"><a href="#Adapter-Pattern" class="headerlink" title="Adapter Pattern"></a>Adapter Pattern</h1><p>在软件系统中，由于应用环境的变化，常常需要将“一些现存的对象”放在新的环境中应用，但是新环境要求的接口是这些现存对象所不满足的。Adapter设计模式就是为了应对这种“迁移的变化”，以使客户系统既能利用现有对象的良好实现，同时又能满足新的应用环境所要求的接口。<br><a id="more"></a></p><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div></pre></td><td class="code"><pre><div class="line">&lt;?php</div><div class="line"></div><div class="line">//原运输系统 和 车辆</div><div class="line">Class Transport&#123;</div><div class="line"></div><div class="line">private $car;//运输的车辆</div><div class="line"></div><div class="line">public function __construct(Car $car)&#123;</div><div class="line">$this-&gt;car = $car;</div><div class="line">&#125;</div><div class="line"></div><div class="line">public function transporting()&#123;</div><div class="line">$this-&gt;car-&gt;run();</div><div class="line">&#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">//车</div><div class="line">interface Car&#123;</div><div class="line">//搞运输</div><div class="line">public function run();</div><div class="line">&#125;</div><div class="line"></div><div class="line">//正常运输车</div><div class="line">Class Jeep implements Car&#123;</div><div class="line">public function run()&#123;</div><div class="line">echo &apos;run...&apos;;</div><div class="line">&#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">//正常情况是这样的</div><div class="line">$jeep = new Jeep;</div><div class="line">$transport = new Transport($jeep);</div><div class="line">$transport-&gt;transporting();//&apos;run...&apos;;</div><div class="line"></div><div class="line">//但有一种车辆，他是这样的</div><div class="line">Class BMW &#123;</div><div class="line">public function move()&#123;</div><div class="line">echo &apos;move...&apos;;</div><div class="line">&#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">//BMW 如果想加入运输系统，就需要adapter 模式</div><div class="line">Class BMWCaradapter implements Car&#123;</div><div class="line"></div><div class="line">private $bmw;</div><div class="line"></div><div class="line">public function __construct($bmw)&#123;</div><div class="line">$this-&gt;bmw = $bmw;</div><div class="line">&#125;</div><div class="line"></div><div class="line">public function run()&#123;</div><div class="line">$bmw-&gt;move();</div><div class="line">&#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">//运行</div><div class="line">$bmw = new BMW;</div><div class="line">$BMWCarAdapter = new BMWCarAdapter($bmw);</div><div class="line">$transport = new Transport($BMWCarAdapter);</div><div class="line">$transport-&gt;transporting();//&apos;move...&apos;;</div><div class="line"></div><div class="line">//这样就完成了适配</div></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;Adapter-Pattern&quot;&gt;&lt;a href=&quot;#Adapter-Pattern&quot; class=&quot;headerlink&quot; title=&quot;Adapter Pattern&quot;&gt;&lt;/a&gt;Adapter Pattern&lt;/h1&gt;&lt;p&gt;在软件系统中，由于应用环境的变化，常常需要将“一些现存的对象”放在新的环境中应用，但是新环境要求的接口是这些现存对象所不满足的。Adapter设计模式就是为了应对这种“迁移的变化”，以使客户系统既能利用现有对象的良好实现，同时又能满足新的应用环境所要求的接口。&lt;br&gt;
+    
+    </summary>
+    
+      <category term="coding" scheme="http://vestin.github.io/categories/coding/"/>
+    
+    
+      <category term="design pattern" scheme="http://vestin.github.io/tags/design-pattern/"/>
+    
+  </entry>
+  
+  <entry>
     <title>design-pattern-commonality-and-variability-analysis</title>
     <link href="http://vestin.github.io/2016/06/17/design-pattern-CVA/"/>
     <id>http://vestin.github.io/2016/06/17/design-pattern-CVA/</id>
@@ -75,28 +125,6 @@
     
       &lt;h1 id=&quot;commonality-and-variability-analysis-CVA-共性可变性分析&quot;&gt;&lt;a href=&quot;#commonality-and-variability-analysis-CVA-共性可变性分析&quot; class=&quot;headerlink&quot; title=&quot;commonality and variability analysis (CVA) 共性可变性分析&quot;&gt;&lt;/a&gt;commonality and variability analysis (CVA) 共性可变性分析&lt;/h1&gt;&lt;p&gt;共性可变性分析&lt;/p&gt;
 &lt;p&gt;设计模式不能用于所有的设计中，但他们提供的思想是相同的。这些思想中，最重要的一条就是可以使用CVA找到系统中的变化，然后按照设计模式的原则（对接口编程、使用对象聚集封装变化）获得灵活和易于测试的设计。&lt;br&gt;
-    
-    </summary>
-    
-      <category term="coding" scheme="http://vestin.github.io/categories/coding/"/>
-    
-    
-      <category term="design pattern" scheme="http://vestin.github.io/tags/design-pattern/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>design-pattern-adapter-pattern</title>
-    <link href="http://vestin.github.io/2016/06/17/design-pattern-adapter-pattern/"/>
-    <id>http://vestin.github.io/2016/06/17/design-pattern-adapter-pattern/</id>
-    <published>2016-06-17T01:48:53.000Z</published>
-    <updated>2017-10-19T08:44:29.055Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="Adapter-Pattern"><a href="#Adapter-Pattern" class="headerlink" title="Adapter Pattern"></a>Adapter Pattern</h1><p>在软件系统中，由于应用环境的变化，常常需要将“一些现存的对象”放在新的环境中应用，但是新环境要求的接口是这些现存对象所不满足的。Adapter设计模式就是为了应对这种“迁移的变化”，以使客户系统既能利用现有对象的良好实现，同时又能满足新的应用环境所要求的接口。<br><a id="more"></a></p><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div></pre></td><td class="code"><pre><div class="line">&lt;?php</div><div class="line"></div><div class="line">//原运输系统 和 车辆</div><div class="line">Class Transport&#123;</div><div class="line"></div><div class="line">private $car;//运输的车辆</div><div class="line"></div><div class="line">public function __construct(Car $car)&#123;</div><div class="line">$this-&gt;car = $car;</div><div class="line">&#125;</div><div class="line"></div><div class="line">public function transporting()&#123;</div><div class="line">$this-&gt;car-&gt;run();</div><div class="line">&#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">//车</div><div class="line">interface Car&#123;</div><div class="line">//搞运输</div><div class="line">public function run();</div><div class="line">&#125;</div><div class="line"></div><div class="line">//正常运输车</div><div class="line">Class Jeep implements Car&#123;</div><div class="line">public function run()&#123;</div><div class="line">echo &apos;run...&apos;;</div><div class="line">&#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">//正常情况是这样的</div><div class="line">$jeep = new Jeep;</div><div class="line">$transport = new Transport($jeep);</div><div class="line">$transport-&gt;transporting();//&apos;run...&apos;;</div><div class="line"></div><div class="line">//但有一种车辆，他是这样的</div><div class="line">Class BMW &#123;</div><div class="line">public function move()&#123;</div><div class="line">echo &apos;move...&apos;;</div><div class="line">&#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">//BMW 如果想加入运输系统，就需要adapter 模式</div><div class="line">Class BMWCaradapter implements Car&#123;</div><div class="line"></div><div class="line">private $bmw;</div><div class="line"></div><div class="line">public function __construct($bmw)&#123;</div><div class="line">$this-&gt;bmw = $bmw;</div><div class="line">&#125;</div><div class="line"></div><div class="line">public function run()&#123;</div><div class="line">$bmw-&gt;move();</div><div class="line">&#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">//运行</div><div class="line">$bmw = new BMW;</div><div class="line">$BMWCarAdapter = new BMWCarAdapter($bmw);</div><div class="line">$transport = new Transport($BMWCarAdapter);</div><div class="line">$transport-&gt;transporting();//&apos;move...&apos;;</div><div class="line"></div><div class="line">//这样就完成了适配</div></pre></td></tr></table></figure>]]></content>
-    
-    <summary type="html">
-    
-      &lt;h1 id=&quot;Adapter-Pattern&quot;&gt;&lt;a href=&quot;#Adapter-Pattern&quot; class=&quot;headerlink&quot; title=&quot;Adapter Pattern&quot;&gt;&lt;/a&gt;Adapter Pattern&lt;/h1&gt;&lt;p&gt;在软件系统中，由于应用环境的变化，常常需要将“一些现存的对象”放在新的环境中应用，但是新环境要求的接口是这些现存对象所不满足的。Adapter设计模式就是为了应对这种“迁移的变化”，以使客户系统既能利用现有对象的良好实现，同时又能满足新的应用环境所要求的接口。&lt;br&gt;
     
     </summary>
     
