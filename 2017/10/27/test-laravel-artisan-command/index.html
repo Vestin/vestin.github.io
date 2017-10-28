@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    <title>测试laravel commands的方法 | horizon | Vestin&#39;s blog</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="tools,laravel,test">
+    <meta name="description" content="引言最近使用到laravel的consolo命令行工具，在编写命令，想写一些测试的时候，发现官方文档中并没有提到command的测试方法。花了点时间，翻墙找了资料，实践成功并记录一下，方便更多人。">
+<meta name="keywords" content="tools,laravel,test">
+<meta property="og:type" content="article">
+<meta property="og:title" content="测试laravel commands的方法">
+<meta property="og:url" content="http://vestin.github.io/2017/10/27/test-laravel-artisan-command/index.html">
+<meta property="og:site_name" content="horizon">
+<meta property="og:description" content="引言最近使用到laravel的consolo命令行工具，在编写命令，想写一些测试的时候，发现官方文档中并没有提到command的测试方法。花了点时间，翻墙找了资料，实践成功并记录一下，方便更多人。">
+<meta property="og:locale" content="cn">
+<meta property="og:updated_time" content="2017-10-28T07:23:28.616Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="测试laravel commands的方法">
+<meta name="twitter:description" content="引言最近使用到laravel的consolo命令行工具，在编写命令，想写一些测试的时候，发现官方文档中并没有提到command的测试方法。花了点时间，翻墙找了资料，实践成功并记录一下，方便更多人。">
+    
+        <link rel="alternate" type="application/atom+xml" title="horizon" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">Vestin</h5>
+          <a href="mailto:vestinzds@gmail.com" title="vestinzds@gmail.com" class="mail">vestinzds@gmail.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                Home
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                Archives
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                Categories
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/vestin" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/about"  >
+                <i class="icon icon-lg icon-heart"></i>
+                About Me
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">测试laravel commands的方法</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">测试laravel commands的方法</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2017-10-27T09:21:41.000Z" itemprop="datePublished" class="page-time">
+  2017-10-27
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/coding/">coding</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#引言"><span class="post-toc-number">1.</span> <span class="post-toc-text">引言</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#测试方法"><span class="post-toc-number">2.</span> <span class="post-toc-text">测试方法</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#示例"><span class="post-toc-number">3.</span> <span class="post-toc-text">示例</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#待测试的command"><span class="post-toc-number">3.1.</span> <span class="post-toc-text">待测试的command</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#正确的结果"><span class="post-toc-number">3.2.</span> <span class="post-toc-text">正确的结果</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#想要测试的内容"><span class="post-toc-number">3.3.</span> <span class="post-toc-text">想要测试的内容</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#编写单元测试"><span class="post-toc-number">3.4.</span> <span class="post-toc-text">编写单元测试</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#执行测试"><span class="post-toc-number">3.5.</span> <span class="post-toc-text">执行测试</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#参考文档"><span class="post-toc-number">4.</span> <span class="post-toc-text">参考文档</span></a></li></ol>
+        </nav>
+    </aside>
+    
+<article id="blog-test-laravel-artisan-command"
+  class="post-article article-type-blog fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">测试laravel commands的方法</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2017-10-27 17:21:41" datetime="2017-10-27T09:21:41.000Z"  itemprop="datePublished">2017-10-27</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/coding/">coding</a></li></ul>
+
+
+
+            
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <h2 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h2><p>最近使用到laravel的consolo命令行工具，在编写命令，想写一些测试的时候，发现官方文档中并没有提到<code>command</code>的测试方法。花了点时间，翻墙找了资料，实践成功并记录一下，方便更多人。</p>
+<a id="more"></a>
+<h2 id="测试方法"><a href="#测试方法" class="headerlink" title="测试方法"></a>测试方法</h2><p>大家都知道Laravel中使用了很多Symfony的成熟组件，Laravel的console组件使用的就是<a href="https://github.com/symfony/console" target="_blank" rel="external">Symfony/console</a>。</p>
+<p>幸运的是，<code>Symfony/console</code> 组件中提供了用于command测试的<code>CommandTester</code>, 使用方法如下<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div></pre></td><td class="code"><pre><div class="line">...</div><div class="line">use FooCommand;</div><div class="line">use Symfony\Component\Console\Application;</div><div class="line">use Symfony\Component\Console\Tester\CommandTester;</div><div class="line">...</div><div class="line"></div><div class="line">public function testSample()&#123;</div><div class="line">    //创建一个console测试应用平台，用来搭载测试的命令</div><div class="line">    $application = new Application();</div><div class="line">    </div><div class="line">    //创建待测试的command</div><div class="line">    $testedCommand = $this-&gt;app-&gt;make(FooCommand::class);</div><div class="line">    //设置命令执行需要的laravel依赖</div><div class="line">    $testedCommand-&gt;setLaravel(app());</div><div class="line"></div><div class="line">    //添加待测试的command到测试应用上</div><div class="line">    //同时command 也绑定 application</div><div class="line">    $application-&gt;add($testedCommand);</div><div class="line"></div><div class="line">    //实例化命令测试类</div><div class="line">    $commandTester = new CommandTester($testedCommand);</div><div class="line">    //命令输入流，对应每次交互需要提供的输入内容</div><div class="line">    $commandTester-&gt;setInputs([</div><div class="line">        //...</div><div class="line">        ]);</div><div class="line">    //执行命令</div><div class="line">    $commandTester-&gt;execute([&apos;command&apos; =&gt; $testedCommand-&gt;getName()]);</div><div class="line"></div><div class="line">    //对命令执行结果进行断言测试，主要是依靠正则判断</div><div class="line">    //$commandTester-&gt;getDisplay() 方法可以获取命令执行后的输出结果</div><div class="line">    $this-&gt;assertRegExp(&quot;/some reg/&quot;, $commandTester-&gt;getDisplay());</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h2 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h2><p>我们现在有一个手动创建新用户的命令<code>createUser</code>,作用就是手动创建一个用户。</p>
+<p>需要交互式让用户输入<code>name</code>,<code>email</code>,<code>password</code>,<code>comfirm password</code>,这些数据。</p>
+<h3 id="待测试的command"><a href="#待测试的command" class="headerlink" title="待测试的command"></a>待测试的command</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div></pre></td><td class="code"><pre><div class="line">&lt;?php</div><div class="line"></div><div class="line">namespace App\Console\Commands;</div><div class="line"></div><div class="line">use App\User;</div><div class="line">use Illuminate\Auth\Events\Registered;</div><div class="line">use Illuminate\Console\Command;</div><div class="line">use Illuminate\Support\Facades\Validator;</div><div class="line"></div><div class="line">class CreateUser extends Command</div><div class="line">&#123;</div><div class="line">    /**</div><div class="line">     * The name and signature of the console command.</div><div class="line">     *</div><div class="line">     * @var string</div><div class="line">     */</div><div class="line">    protected $signature = &apos;createUser&apos;;</div><div class="line"></div><div class="line">    /**</div><div class="line">     * The console command description.</div><div class="line">     *</div><div class="line">     * @var string</div><div class="line">     */</div><div class="line">    protected $description = &apos;create new user for system manually&apos;;</div><div class="line"></div><div class="line">    /**</div><div class="line">     * Create a new command instance.</div><div class="line">     *</div><div class="line">     * @return void</div><div class="line">     */</div><div class="line">    public function __construct()</div><div class="line">    &#123;</div><div class="line">        parent::__construct();</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    /**</div><div class="line">     * Execute the console command.</div><div class="line">     *</div><div class="line">     * @return mixed</div><div class="line">     */</div><div class="line">    public function handle()</div><div class="line">    &#123;</div><div class="line">        $this-&gt;line($this-&gt;description);</div><div class="line"></div><div class="line">        // 获取输入的数据</div><div class="line">        $data = [</div><div class="line">            &apos;name&apos; =&gt; $this-&gt;ask(&apos;What\&apos;s your name?&apos;),</div><div class="line">            &apos;email&apos; =&gt; $this-&gt;ask(&apos;What\&apos;s your email?&apos;),</div><div class="line">            &apos;password&apos; =&gt; $this-&gt;secret(&apos;What\&apos;s your password?&apos;),</div><div class="line">            &apos;password_confirmation&apos; =&gt; $this-&gt;secret(&apos;Pleas confirm your password.&apos;)</div><div class="line">        ];</div><div class="line"></div><div class="line">        // 验证输入内容</div><div class="line">        $validator = $this-&gt;makeValidator($data);</div><div class="line">        if ($validator-&gt;fails()) &#123;</div><div class="line">            foreach ($validator-&gt;errors()-&gt;toArray() as $error) &#123;</div><div class="line">                foreach ($error as $message) &#123;</div><div class="line">                    $this-&gt;error($message);</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">            return;</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        // 向用户确认输入信息</div><div class="line">        if (!$this-&gt;confirm(&apos;Confirm your info: &apos; . PHP_EOL . &apos;name:&apos; . $data[&apos;name&apos;] . PHP_EOL . &apos;email:&apos; . $data[&apos;email&apos;] . PHP_EOL . &apos;is this correct?&apos;)) &#123;</div><div class="line">            return;</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        // 注册</div><div class="line">        $user = $this-&gt;create($data);</div><div class="line">        event(new Registered($user));</div><div class="line">        $this-&gt;line(&apos;User &apos; . $user-&gt;name . &apos; successfully registered&apos;);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    /**</div><div class="line">     * Get a validator for an incoming registration request.</div><div class="line">     *</div><div class="line">     * @param  array $data</div><div class="line">     * @return \Illuminate\Contracts\Validation\Validator</div><div class="line">     */</div><div class="line">    protected function makeValidator($data)</div><div class="line">    &#123;</div><div class="line">        return Validator::make($data, [</div><div class="line">            &apos;name&apos; =&gt; &apos;required|string|max:255|unique:users&apos;,</div><div class="line">            &apos;email&apos; =&gt; &apos;required|string|email|max:255|unique:users&apos;,</div><div class="line">            &apos;password&apos; =&gt; &apos;required|string|min:6|confirmed&apos;</div><div class="line">        ]);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    /**</div><div class="line">     * Create a new user instance after a valid registration.</div><div class="line">     *</div><div class="line">     * @param  array $data</div><div class="line">     * @return \App\User</div><div class="line">     */</div><div class="line">    protected function create($data)</div><div class="line">    &#123;</div><div class="line">        return User::create([</div><div class="line">            &apos;name&apos; =&gt; $data[&apos;name&apos;],</div><div class="line">            &apos;email&apos; =&gt; $data[&apos;email&apos;],</div><div class="line">            &apos;password&apos; =&gt; bcrypt($data[&apos;password&apos;])</div><div class="line">        ]);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="正确的结果"><a href="#正确的结果" class="headerlink" title="正确的结果"></a>正确的结果</h3><p>如果正确输入信息的话，会得到如下输出<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line">$ path-to-your-app/app# php artisan createUser</div><div class="line">create new user for system manually</div><div class="line"></div><div class="line"> What&apos;s your name?:</div><div class="line"> &gt; vestin</div><div class="line"></div><div class="line"> What&apos;s your email?:</div><div class="line"> &gt; correct@abc.com</div><div class="line"></div><div class="line"> What&apos;s your password?:</div><div class="line"> &gt; </div><div class="line"></div><div class="line"> Pleas confirm your password.:</div><div class="line"> &gt; </div><div class="line"></div><div class="line"> Confirm your info: </div><div class="line">name:vestin</div><div class="line">email:correct@abc.com</div><div class="line">is this correct? (yes/no) [no]:</div><div class="line"> &gt; yes</div><div class="line"></div><div class="line">User vestin successfully registered</div></pre></td></tr></table></figure></p>
+<h3 id="想要测试的内容"><a href="#想要测试的内容" class="headerlink" title="想要测试的内容"></a>想要测试的内容</h3><p>我想要测试两块内容：</p>
+<ul>
+<li>数据输入验证测试<ul>
+<li>email有效性测试</li>
+<li>password两次输入是否相同的测试</li>
+</ul>
+</li>
+<li>正确创建用户测试</li>
+</ul>
+<h3 id="编写单元测试"><a href="#编写单元测试" class="headerlink" title="编写单元测试"></a>编写单元测试</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div></pre></td><td class="code"><pre><div class="line">&lt;?php</div><div class="line"></div><div class="line">namespace Tests\Unit\command;</div><div class="line"></div><div class="line">use App\Console\Commands\CreateUser;</div><div class="line">use Symfony\Component\Console\Application;</div><div class="line">use Symfony\Component\Console\Tester\CommandTester;</div><div class="line">use Tests\TestCase;</div><div class="line">use Illuminate\Foundation\Testing\RefreshDatabase;</div><div class="line"></div><div class="line">class CreateUserTest extends TestCase</div><div class="line">&#123;</div><div class="line"></div><div class="line">    use RefreshDatabase;</div><div class="line"></div><div class="line">    /**</div><div class="line">     * 测试数据验证</div><div class="line">     *</div><div class="line">     * @return void</div><div class="line">     */</div><div class="line">    public function testValidation()</div><div class="line">    &#123;</div><div class="line">        $application = new Application();</div><div class="line"></div><div class="line">        $testedCommand = $this-&gt;app-&gt;make(CreateUser::class);</div><div class="line">        $testedCommand-&gt;setLaravel(app());</div><div class="line">        $application-&gt;add($testedCommand);</div><div class="line"></div><div class="line">        $commandTester = new CommandTester($testedCommand);</div><div class="line">        $commandTester-&gt;setInputs([&apos;Vestin&apos;, &apos;badEmail@abc&apos;, &apos;123456&apos;, &apos;654321&apos;]);</div><div class="line">        $commandTester-&gt;execute([&apos;command&apos; =&gt; $testedCommand-&gt;getName()]);</div><div class="line"></div><div class="line">        // assert</div><div class="line">        $this-&gt;assertRegExp(&quot;/The email must be a valid email address/&quot;, $commandTester-&gt;getDisplay());</div><div class="line"></div><div class="line">        $commandTester-&gt;setInputs([&apos;vestin&apos;, &apos;correct@abc.com&apos;, &apos;123456&apos;, &apos;654321&apos;]);</div><div class="line">        $commandTester-&gt;execute([&apos;command&apos; =&gt; $testedCommand-&gt;getName()]);</div><div class="line"></div><div class="line">        // assert</div><div class="line">        $this-&gt;assertRegExp(&quot;/The password confirmation does not match/&quot;, $commandTester-&gt;getDisplay());</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    /**</div><div class="line">     * 测试成功注册用户</div><div class="line">     *</div><div class="line">     * @return void</div><div class="line">     */</div><div class="line">    public function testSuccess()</div><div class="line">    &#123;</div><div class="line">        $application = new Application();</div><div class="line"></div><div class="line">        $testedCommand = $this-&gt;app-&gt;make(CreateUser::class);</div><div class="line">        $testedCommand-&gt;setLaravel(app());</div><div class="line">        $application-&gt;add($testedCommand);</div><div class="line"></div><div class="line">        $commandTester = new CommandTester($testedCommand);</div><div class="line">        $commandTester-&gt;setInputs([&apos;Vestin&apos;, &apos;correct@abc.com&apos;, &apos;123456&apos;, &apos;123456&apos;, &apos;y&apos;]);</div><div class="line">        $commandTester-&gt;execute([&apos;command&apos; =&gt; $testedCommand-&gt;getName()]);</div><div class="line"></div><div class="line">        // assert</div><div class="line">        $this-&gt;assertRegExp(&quot;/User Vestin successfully registered/&quot;, $commandTester-&gt;getDisplay());</div><div class="line">        $this-&gt;assertDatabaseHas(&apos;users&apos;, [</div><div class="line">            &apos;email&apos; =&gt; &apos;correct@abc.com&apos;,</div><div class="line">            &apos;name&apos; =&gt; &apos;Vestin&apos;</div><div class="line">        ]);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="执行测试"><a href="#执行测试" class="headerlink" title="执行测试"></a>执行测试</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">$ path-to-your-app/app#  ./vendor/bin/phpunit </div><div class="line">PHPUnit 6.4.3 by Sebastian Bergmann and contributors.</div><div class="line"></div><div class="line">..                                                                  3 / 3 (100%)</div><div class="line"></div><div class="line">Time: 659 ms, Memory: 14.00MB</div></pre></td></tr></table></figure>
+<h2 id="参考文档"><a href="#参考文档" class="headerlink" title="参考文档"></a>参考文档</h2><ul>
+<li><a href="http://symfony.com/doc/current/components/console.html" target="_blank" rel="external">http://symfony.com/doc/current/components/console.html</a></li>
+<li><a href="https://laracasts.com/discuss/channels/testing/how-do-you-test-your-commands-phpunit" target="_blank" rel="external">https://laracasts.com/discuss/channels/testing/how-do-you-test-your-commands-phpunit</a></li>
+<li><a href="https://themsaid.com/building-testing-interactive-console-20160409" target="_blank" rel="external">https://themsaid.com/building-testing-interactive-console-20160409</a></li>
+<li><a href="https://laravelista.com/posts/testing-laravel-commands" target="_blank" rel="external">https://laravelista.com/posts/testing-laravel-commands</a></li>
+</ul>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    <div class="content">
+        
+
+        
+        欢迎分享交流 XD<br>本文地址：<a href="/2017/10/27/test-laravel-artisan-command/" target="_blank" rel="external">http://vestin.github.io/2017/10/27/test-laravel-artisan-command/</a>
+        
+    </div>
+    <footer>
+        <a href="http://vestin.github.io">
+            <img src="/img/avatar.jpg" alt="Vestin">
+            Vestin
+        </a>
+    </footer>
+</blockquote>
+
+        
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/laravel/">laravel</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/test/">test</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/tools/">tools</a></li></ul>
+
+
+            
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between flex-row-reverse">
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2017/10/25/develop-tools-in-laravel/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">Larvel 开发中使用顺手的一些工具集</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>This blog is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.</span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>Vestin &copy; 2016 - 2017</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: false, REWARD: false };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = 'for freedom!!!';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '(つェ⊂)咦!又好了!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>
