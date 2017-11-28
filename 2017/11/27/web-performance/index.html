@@ -20,18 +20,18 @@
     
     
     <meta name="keywords" content="性能优化,架构">
-    <meta name="description" content="负载均衡当单机负载不能满足服务需求，就需要多台服务器来处理。负载均衡起到调度服务器，分配服务处理量的作用。  DNS负载均衡（不推荐使用）基本用法 多个Ａ记录轮旬1234A-&amp;gt;127.0.0.2A-&amp;gt;127.0.0.3A-&amp;gt;127.0.0.4... 智能解析就近解析 DNS负载均衡的优势  扩展性 -&amp;gt; 扩容方便 易用性 -&amp;gt; 操作简单劣势 灵活性不够　DNS有缓存时">
+    <meta name="description" content="负载均衡当单机负载不能满足服务需求，就需要多台服务器来处理。负载均衡起到调度服务器，分配服务处理量的作用。  DNS负载均衡基本用法 多个Ａ记录轮旬1234A-&amp;gt;127.0.0.2A-&amp;gt;127.0.0.3A-&amp;gt;127.0.0.4... 智能解析就近解析 DNS负载均衡的优势  扩展性 -&amp;gt; 扩容方便 易用性 -&amp;gt; 操作简单劣势 灵活性不够　DNS有缓存时间，出故障后，">
 <meta name="keywords" content="性能优化,架构">
 <meta property="og:type" content="article">
 <meta property="og:title" content="负载均衡">
 <meta property="og:url" content="http://vestin.github.io/2017/11/27/web-performance/index.html">
 <meta property="og:site_name" content="horizon">
-<meta property="og:description" content="负载均衡当单机负载不能满足服务需求，就需要多台服务器来处理。负载均衡起到调度服务器，分配服务处理量的作用。  DNS负载均衡（不推荐使用）基本用法 多个Ａ记录轮旬1234A-&amp;gt;127.0.0.2A-&amp;gt;127.0.0.3A-&amp;gt;127.0.0.4... 智能解析就近解析 DNS负载均衡的优势  扩展性 -&amp;gt; 扩容方便 易用性 -&amp;gt; 操作简单劣势 灵活性不够　DNS有缓存时">
+<meta property="og:description" content="负载均衡当单机负载不能满足服务需求，就需要多台服务器来处理。负载均衡起到调度服务器，分配服务处理量的作用。  DNS负载均衡基本用法 多个Ａ记录轮旬1234A-&amp;gt;127.0.0.2A-&amp;gt;127.0.0.3A-&amp;gt;127.0.0.4... 智能解析就近解析 DNS负载均衡的优势  扩展性 -&amp;gt; 扩容方便 易用性 -&amp;gt; 操作简单劣势 灵活性不够　DNS有缓存时间，出故障后，">
 <meta property="og:locale" content="cn">
-<meta property="og:updated_time" content="2017-11-28T08:43:41.734Z">
+<meta property="og:updated_time" content="2017-11-28T08:45:44.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="负载均衡">
-<meta name="twitter:description" content="负载均衡当单机负载不能满足服务需求，就需要多台服务器来处理。负载均衡起到调度服务器，分配服务处理量的作用。  DNS负载均衡（不推荐使用）基本用法 多个Ａ记录轮旬1234A-&amp;gt;127.0.0.2A-&amp;gt;127.0.0.3A-&amp;gt;127.0.0.4... 智能解析就近解析 DNS负载均衡的优势  扩展性 -&amp;gt; 扩容方便 易用性 -&amp;gt; 操作简单劣势 灵活性不够　DNS有缓存时">
+<meta name="twitter:description" content="负载均衡当单机负载不能满足服务需求，就需要多台服务器来处理。负载均衡起到调度服务器，分配服务处理量的作用。  DNS负载均衡基本用法 多个Ａ记录轮旬1234A-&amp;gt;127.0.0.2A-&amp;gt;127.0.0.3A-&amp;gt;127.0.0.4... 智能解析就近解析 DNS负载均衡的优势  扩展性 -&amp;gt; 扩容方便 易用性 -&amp;gt; 操作简单劣势 灵活性不够　DNS有缓存时间，出故障后，">
     
         <link rel="alternate" type="application/atom+xml" title="horizon" href="/atom.xml">
     
@@ -160,7 +160,7 @@
     <aside class="post-widget">
         <nav class="post-toc-wrap" id="post-toc">
             <h4>TOC</h4>
-            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#负载均衡"><span class="post-toc-number">1.</span> <span class="post-toc-text">负载均衡</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#DNS负载均衡（不推荐使用）"><span class="post-toc-number">2.</span> <span class="post-toc-text">DNS负载均衡（不推荐使用）</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#多个A记录轮旬"><span class="post-toc-number">2.1.</span> <span class="post-toc-text">多个Ａ记录轮旬</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#智能解析"><span class="post-toc-number">2.2.</span> <span class="post-toc-text">智能解析</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#反向代理负载均衡"><span class="post-toc-number">2.3.</span> <span class="post-toc-text">反向代理负载均衡</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#ip负载均衡"><span class="post-toc-number">2.4.</span> <span class="post-toc-text">ip负载均衡</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#DNAT-反向NAT"><span class="post-toc-number">2.4.1.</span> <span class="post-toc-text">DNAT(反向NAT)</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#LVS"><span class="post-toc-number">2.4.2.</span> <span class="post-toc-text">LVS</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Direct-Route-直接路由"><span class="post-toc-number">2.5.</span> <span class="post-toc-text">Direct Route(直接路由)</span></a></li></ol></li></ol>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#负载均衡"><span class="post-toc-number">1.</span> <span class="post-toc-text">负载均衡</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#DNS负载均衡"><span class="post-toc-number">2.</span> <span class="post-toc-text">DNS负载均衡</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#多个A记录轮旬"><span class="post-toc-number">2.1.</span> <span class="post-toc-text">多个Ａ记录轮旬</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#智能解析"><span class="post-toc-number">2.2.</span> <span class="post-toc-text">智能解析</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#反向代理负载均衡"><span class="post-toc-number">2.3.</span> <span class="post-toc-text">反向代理负载均衡</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#ip负载均衡"><span class="post-toc-number">2.4.</span> <span class="post-toc-text">ip负载均衡</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#DNAT-反向NAT"><span class="post-toc-number">2.4.1.</span> <span class="post-toc-text">DNAT(反向NAT)</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#LVS"><span class="post-toc-number">2.4.2.</span> <span class="post-toc-text">LVS</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Direct-Route-直接路由"><span class="post-toc-number">2.5.</span> <span class="post-toc-text">Direct Route(直接路由)</span></a></li></ol></li></ol>
         </nav>
     </aside>
     
@@ -181,7 +181,7 @@
         <div class="post-content" id="post-content" itemprop="postContent">
             <h2 id="负载均衡"><a href="#负载均衡" class="headerlink" title="负载均衡"></a>负载均衡</h2><p>当单机负载不能满足服务需求，就需要多台服务器来处理。负载均衡起到调度服务器，分配服务处理量的作用。</p>
 <hr>
-<h2 id="DNS负载均衡（不推荐使用）"><a href="#DNS负载均衡（不推荐使用）" class="headerlink" title="DNS负载均衡（不推荐使用）"></a>DNS负载均衡（不推荐使用）</h2><p>基本用法</p>
+<h2 id="DNS负载均衡"><a href="#DNS负载均衡" class="headerlink" title="DNS负载均衡"></a>DNS负载均衡</h2><p>基本用法</p>
 <h3 id="多个A记录轮旬"><a href="#多个A记录轮旬" class="headerlink" title="多个Ａ记录轮旬"></a>多个Ａ记录轮旬</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">A-&gt;127.0.0.2</div><div class="line">A-&gt;127.0.0.3</div><div class="line">A-&gt;127.0.0.4</div><div class="line">...</div></pre></td></tr></table></figure>
 <h3 id="智能解析"><a href="#智能解析" class="headerlink" title="智能解析"></a>智能解析</h3><p>就近解析</p>
 <p>DNS负载均衡的优势</p>
